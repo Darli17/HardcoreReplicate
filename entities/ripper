@@ -26,7 +26,7 @@ local entity = Spawner:Create({
 		Repair = false
 	},
 	Earthquake = {
-		Enabled = true
+		Enabled = false
 	},
 	CameraShake = {
 		Enabled = true,
@@ -154,7 +154,7 @@ entity:SetCallback("OnDamagePlayer", function(newHealth: number)
 
     local rip = game.Workspace.Ripper.Main
                 
-    soundhum(rip.jumpscare,10)
+    soundhum(rip.jumpscare,1)
     local TweenService = game:GetService("TweenService")
 
     task.wait(1.2)
@@ -163,7 +163,7 @@ entity:SetCallback("OnDamagePlayer", function(newHealth: number)
     staticeffect.Static.ImageTransparency = 1
     staticeffect.Parent = player.PlayerGui
     --soundhumDest("jumpscare")
-    soundhum(rip.static,10)
+    soundhum(rip.static,1)
     
     local TweenService = game:GetService("TweenService")
     local tween = TweenService:Create(staticeffect.Static, TweenInfo.new(3, Enum.EasingStyle.Quad), {
@@ -180,8 +180,6 @@ entity:SetCallback("OnDamagePlayer", function(newHealth: number)
     soundhumDest("static")
     soundhumDest("jumpscare")
     character.Humanoid:TakeDamage(100000)
-
-    workspace.Ripper:Destroy()
 
     end)
 
