@@ -48,13 +48,13 @@ local entity = Spawner:Create({
 	Damage = {
 		Enabled = true,
 		IgnoreHiding = false,
-		Range = 40,
+		Range = 50,
 		Amount = 1
 	},
 	Crucifixion = {
     Type = "Guiding",
 		Enabled = false,
-		Range = 45,
+		Range = 66,
 		Resist = true,
 		Break = true
 	},
@@ -102,19 +102,23 @@ local entity = Spawner:Create({
 
 
 
-local function soundhum(sound)
+local function soundhum(sound,volume)
     local cln = sound:Clone()
     cln.Parent = character.HumanoidRootPart
     cln:Play()
+    cln.Volume = volume
     Debris:AddItem(cln,6)
+end
+local function soundhumDest(sound)
+    character.HumanoidRootPart:WaitForChild(sound):Destroy()
 end
 
 entity:SetCallback("OnSpawned", function()
-    soundhum(workspace.Ripper.Main.arrival)
+    soundhum(workspace.Ripper.Main.arrival, 5)
 end)
 
 entity:SetCallback("OnDespawning", function()
-    soundhum(workspace.Ripper.Main.despawn)
+    soundhum(workspace.Ripper.Main.despawn, 5)
 end)
 
 entity:SetCallback("OnDamagePlayer", function(newHealth: number)
@@ -142,12 +146,48 @@ entity:SetCallback("OnDamagePlayer", function(newHealth: number)
     player.PlayerGui.MainUI.Initiator.Main_Game.Camera:Destroy()
 
     local TweenService = game:GetService("TweenService")
-    local tween = TweenService:Create(camera, TweenInfo.new(0.5, Enum.EasingStyle.Quad), {
+    local tween = TweenService:Create(camera, TweenInfo.new(0.45, Enum.EasingStyle.Quad), {
       CFrame = CFrame.lookAt(camera.CFrame.Position,targetpart.Position),
     }):Play()
-end)
+
+    task.wait(0.45)
+
+    local rip = game.Workspace.Ripper.Main
+                
+    soundhum(rip.jumpscare,10)
+    local TweenService = game:GetService("TweenService")
+
+    task.wait(1.2)
+
+    local staticeffect = game:GetObjects("rbxassetid://93118514641891")[1]
+    staticeffect.Static.ImageTransparency = 1
+    staticeffect.Parent = player.PlayerGui
+    --soundhumDest("jumpscare")
+    soundhum(rip.static,10)
+    
+    local TweenService = game:GetService("TweenService")
+    local tween = TweenService:Create(staticeffect.Static, TweenInfo.new(3, Enum.EasingStyle.Quad), {
+      ImageTransparency = 0,
+    }):Play()
+    
+    game:GetService("RunService").Heartbeat:Connect(function()
+      staticeffect.Static.TileSize = UDim2.new(math.random(400, 600) / 1000, 0, math.random(400, 600) / 1000, 0)
+    end)
+
+    task.wait(3.3)
+    staticeffect.Static.ImageTransparency = 1
+    staticeffect.Enabled = false
+    soundhumDest("static")
+    soundhumDest("jumpscare")
+    character.Humanoid:TakeDamage(100000)
+
+    workspace.Ripper:Destroy()
+
+    end)
 
 entity:Run(true)
 
 workspace.Ripper.Main.ambiencefar.Volume = 10
 workspace.Ripper.Main.ambiencenear.Volume = 10
+workspace.Ripper.Main.static.Name = "attachstatic"
+workspace.Ripper.Main.jumpscare.static.Parent = workspace.Ripper.Main
