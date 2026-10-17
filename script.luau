@@ -1,3 +1,23 @@
+local executor = identifyexecutor() or getexecutorname() or "Unknown"
+local badExecutors = {"Xeno", "Solara", "JJsploit", "bunni", "Krnl", "Velocity"}
+local isBadExecutor = false
+for _, bad in ipairs(badExecutors) do
+    if executor:lower():find(bad:lower()) then
+        isBadExecutor = true
+        break
+    end
+end
+
+if isBadExecutor == true then
+    local player = game.Players.LocalPlayer
+    if executor == "Xeno" then
+      player:Kick("You are using malware executor ("..executor..") make sure u using Madium, Real or others really good executors. AND DELETE XENO THIS POOP")
+    else
+      player:Kick("You are using bad executor ("..executor..") make sure u using Madium, Real or others really good executors.")
+    end
+  else
+    -- START-
+
 local function startCaption()
     local Players = game:GetService("Players")
     local Debris = game:GetService("Debris")
@@ -74,3 +94,7 @@ game.ReplicatedStorage.GameData.LatestRoom:GetPropertyChangedSignal("Value"):Con
       lockDetect = true
     end
 end)
+
+---- END
+
+end
