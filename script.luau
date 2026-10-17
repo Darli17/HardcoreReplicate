@@ -68,9 +68,9 @@ local lockDetect = false
 
 game.ReplicatedStorage.GameData.LatestRoom:GetPropertyChangedSignal("Value"):Connect(function()
     if lockDetect == false then
-        startCaption()
         lockDetect = true
+        startCaption()
+    else
+      lockDetect = true
     end
-  else
-    lockDetect = true
-end
+end)
