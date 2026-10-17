@@ -39,10 +39,10 @@ local entity = Spawner:Create({
 		Delay = math.random(10, 30) / 10
 	},
 	Damage = {
-		Enabled = false,
+		Enabled = true,
 		IgnoreHiding = false,
-		Range = 40,
-		Amount = 999
+		Range = 60,
+		Amount = 100
 	},
 	Crucifixion = {
     Type = "Guiding",
@@ -156,10 +156,10 @@ local entityBack = Spawner:Create({
 		Delay = math.random(10, 30) / 10
 	},
 	Damage = {
-		Enabled = false,
+		Enabled = true,
 		IgnoreHiding = false,
-		Range = 40,
-		Amount = 999
+		Range = 60,
+		Amount = 100
 	},
 	Crucifixion = {
     Type = "Guiding",
@@ -227,10 +227,10 @@ local entityBBack = Spawner:Create({
 		Delay = math.random(10, 30) / 10
 	},
 	Damage = {
-		Enabled = false,
+		Enabled = true,
 		IgnoreHiding = false,
-		Range = 40,
-		Amount = 999
+		Range = 60,
+		Amount = 100
 	},
 	Crucifixion = {
     Type = "Guiding",
