@@ -1,0 +1,61 @@
+---====== Load spawner ======---
+
+local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/DOORS-Entity-Spawner-V2/main/init.luau"))()
+
+---====== Create entity ======---
+
+local entity = Spawner:Create({
+	Entity = {
+		Name = "Deer God",
+		Asset = "rbxassetid://103599825077911",
+		HeightOffset = 0
+	},
+	Lights = {
+		Flicker = {
+			Enabled = true,
+			Duration = 99999
+		},
+		Shatter = false,
+		Repair = false
+	},
+	Earthquake = {
+		Enabled = false
+	},
+	CameraShake = {
+		Enabled = true,
+		Range = 100,
+		Values = {4, 15, 0.1, 1}
+	},
+	Movement = {
+		Speed = 25,
+		Delay = 3,
+		Reversed = false
+	},
+	Rebounding = {
+		Enabled = false,
+		Type = "Blitz",
+		Min = 1,
+		Max = math.random(1, 2),
+		Delay = math.random(10, 30) / 10
+	},
+	Damage = {
+		Enabled = true,
+		IgnoreHiding = true,
+		Range = 60,
+		Amount = 400
+	},
+	Crucifixion = {
+    Type = "Guiding",
+		Enabled = false,
+		Range = 45,
+		Resist = true,
+		Break = true
+	},
+	Death = {
+		Type = "Guiding",
+		Hints = {""},
+		Cause = "Silence"
+	}
+})
+
+entity:Run(true)
