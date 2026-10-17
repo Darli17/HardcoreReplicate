@@ -60,7 +60,7 @@ local entity = Spawner:Create({
 	},
 	Death = {
 		Type = "Guiding",
-		Hints = {"WHAT IS THAT.", "I dont know how he supposted to be here.", "Let's see how named this entity.", "Oh, Ripper.", "He come out of secret floor named repaited masterkey. He is one of the fastest beings in this world.", "Well... I'll see you later, right?"},
+		Hints = {""},
 		Cause = "Ripper"
 	}
 })
